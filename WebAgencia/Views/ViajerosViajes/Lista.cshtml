@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AgenciaAPI.Models.tblViajesViajeros>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Lista</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Viaje", "Nuevo")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaFin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodigoViaje)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaInicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaFin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CodigoViaje)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.IdViajes }) |
+            @Html.ActionLink("Detalle", "Detalle", new { id=item.IdViajes }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.IdViajes })
+        </td>
+    </tr>
+}
+
+</table>

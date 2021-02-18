@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AgenciadeViajeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblViajeros">
+    <Key>
+      <PropertyRef Name="Cedula" />
+    </Key>
+    <Property Name="Cedula" Type="Int32" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="tblViajesViajeros" Relationship="Self.FK_tblViajesViajeros_tblViajeros" FromRole="tblViajeros" ToRole="tblViajesViajeros" />
+  </EntityType>
+  <EntityType Name="tblViajes">
+    <Key>
+      <PropertyRef Name="CodigoViaje" />
+    </Key>
+    <Property Name="CodigoViaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumeroPlaza" Type="Int32" Nullable="false" />
+    <Property Name="Destino" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Precios" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="tblViajesViajeros" Relationship="Self.FK_tblViajesViajeros_tblViajes" FromRole="tblViajes" ToRole="tblViajesViajeros" />
+  </EntityType>
+  <EntityType Name="tblViajesViajeros">
+    <Key>
+      <PropertyRef Name="IdViajes" />
+    </Key>
+    <Property Name="IdViajes" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Cedula" Type="Int32" Nullable="false" />
+    <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CodigoViaje" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblViajeros" Relationship="Self.FK_tblViajesViajeros_tblViajeros" FromRole="tblViajesViajeros" ToRole="tblViajeros" />
+    <NavigationProperty Name="tblViajes" Relationship="Self.FK_tblViajesViajeros_tblViajes" FromRole="tblViajesViajeros" ToRole="tblViajes" />
+  </EntityType>
+  <Association Name="FK_tblViajesViajeros_tblViajeros">
+    <End Role="tblViajeros" Type="Self.tblViajeros" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblViajesViajeros" Type="Self.tblViajesViajeros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblViajeros">
+        <PropertyRef Name="Cedula" />
+      </Principal>
+      <Dependent Role="tblViajesViajeros">
+        <PropertyRef Name="Cedula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblViajesViajeros_tblViajes">
+    <End Role="tblViajes" Type="Self.tblViajes" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblViajesViajeros" Type="Self.tblViajesViajeros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblViajes">
+        <PropertyRef Name="CodigoViaje" />
+      </Principal>
+      <Dependent Role="tblViajesViajeros">
+        <PropertyRef Name="CodigoViaje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AgenciadeViajeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tblViajeros" EntityType="Self.tblViajeros" />
+    <EntitySet Name="tblViajes" EntityType="Self.tblViajes" />
+    <EntitySet Name="tblViajesViajeros" EntityType="Self.tblViajesViajeros" />
+    <AssociationSet Name="FK_tblViajesViajeros_tblViajeros" Association="Self.FK_tblViajesViajeros_tblViajeros">
+      <End Role="tblViajeros" EntitySet="tblViajeros" />
+      <End Role="tblViajesViajeros" EntitySet="tblViajesViajeros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblViajesViajeros_tblViajes" Association="Self.FK_tblViajesViajeros_tblViajes">
+      <End Role="tblViajes" EntitySet="tblViajes" />
+      <End Role="tblViajesViajeros" EntitySet="tblViajesViajeros" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

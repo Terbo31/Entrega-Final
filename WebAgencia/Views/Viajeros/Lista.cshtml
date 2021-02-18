@@ -1,0 +1,57 @@
+﻿@model IEnumerable<AgenciaAPI.Models.tblViajeros>
+
+@{
+    ViewBag.Title = "Lista";
+}
+
+<h2>Viajeros</h2>
+
+<p>
+    @Html.ActionLink("Nuevo Registro", "Nuevo")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cedula)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cedula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Apellidos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Editar", new { id=item.Cedula }) |
+            @Html.ActionLink("Detalle", "Detalle", new { id=item.Cedula }) |
+            @Html.ActionLink("Eliminar", "Eliminar", new { id=item.Cedula })
+        </td>
+    </tr>
+}
+
+</table>

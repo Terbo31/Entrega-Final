@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgenciaAPI", "..\AgenciaAPI\AgenciaAPI.csproj", "{4BF961B6-0F28-462B-89BD-440210842A14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgenciaAPI", "AgenciaAPI\AgenciaAPI.csproj", "{4BF961B6-0F28-462B-89BD-440210842A14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAgencia", "..\WebAgencia\WebAgencia.csproj", "{CCF222B0-D56E-491C-87D5-ACAAFD0245C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAgencia", "WebAgencia\WebAgencia.csproj", "{CCF222B0-D56E-491C-87D5-ACAAFD0245C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

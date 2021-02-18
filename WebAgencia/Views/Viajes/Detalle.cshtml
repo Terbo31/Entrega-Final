@@ -1,0 +1,50 @@
+﻿@model AgenciaAPI.Models.tblViajes
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Viajes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CodigoViaje)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CodigoViaje)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroPlaza)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroPlaza)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Destino)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Destino)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Precios)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Precios)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Editar", new { id = Model.CodigoViaje }) |
+    @Html.ActionLink("Regresar", "Lista")
+</p>
